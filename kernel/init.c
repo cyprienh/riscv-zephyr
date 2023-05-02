@@ -251,6 +251,8 @@ static void bg_thread_main(void *unused1, void *unused2, void *unused3)
 
 	extern void main(void);
 
+  __asm__(".insn u 0x7B, x0, 0" : : : );  // BOP Unit: custom instruction to activate the BOP Unit
+
 	main();
 
 	/* Mark nonessential since main() has no more work to do */

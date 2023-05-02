@@ -115,7 +115,7 @@ void arch_new_thread(struct k_thread *thread, k_thread_stack_t *stack,
 	thread->callee_saved.sp = (unsigned long)stack_init;
 
 	/* where to go when returning from z_riscv_switch() */
-	thread->callee_saved.ra = (unsigned long)z_riscv_thread_start;
+	thread->callee_saved.ra = ((unsigned long)z_riscv_thread_start) ^ 0xf3fa06c2; // BOP Unit: encoding RA
 
 	/* our switch handle is the thread pointer itself */
 	thread->switch_handle = thread;
